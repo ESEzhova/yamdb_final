@@ -1,33 +1,29 @@
 import uuid
+
+from django.core.mail import send_mail
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
-from django.core.mail import send_mail
-from rest_framework import viewsets, status
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
+from django_filters import rest_framework as dfilters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
-from django_filters import rest_framework as dfilters
-from rest_framework import filters
-from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from reviews.models import Category, Code, Genre, Review, Title, User
 
-from reviews.models import (
-    User, Code, Category, Genre,
-    Title, Review
-)
-from .serializers import (
-    UserSerializer, UserForUserSerializer, TokenGeneratorSerialiser,
-    CategorySerializer, GenreSerializer, TitleSerializer,
-    ReviewSerializer, CommentSerializer, TitleListSerializer
-)
-from .permissions import (
-    IsAdmin, IsAdminOrReadOnly,
-    IsOwnerOrReadOnly, NobodyAllow
-)
-from .mixin import MyCreateListDestroyClass
-from .filters import MyFilter
 from api_yamdb.settings import DOMAIN_NAME
+
+from .filters import MyFilter
+from .mixin import MyCreateListDestroyClass
+from .permissions import (IsAdmin, IsAdminOrReadOnly, IsOwnerOrReadOnly,
+                          NobodyAllow)
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer,
+                          TitleListSerializer, TitleSerializer,
+                          TokenGeneratorSerialiser, UserForUserSerializer,
+                          UserSerializer)
 
 TEMA = 'Подтверждающий код для API YAMDB'
 EMAIL_FROM = f'from@{DOMAIN_NAME}'
@@ -43,7 +39,7 @@ class CodeTokenClass(viewsets.ModelViewSet):
         detail=False, methods=['post'],
         url_path='signup', permission_classes=(AllowAny, )
     )
-    def CodGenerator(self, request):
+    def codgenerator(self, request):
         """Функция генерациии кода по юзернейму и email."""
         confirmation_code = str(uuid.uuid4())
         username = request.data.get('username')
@@ -82,7 +78,7 @@ class CodeTokenClass(viewsets.ModelViewSet):
         detail=False, methods=['post'],
         url_path='token', permission_classes=(AllowAny, )
     )
-    def TokenGenerator(self, request):
+    def tokengenerator(self, request):
         """Функция генерациии токена по юзернейму и коду."""
         serializer = TokenGeneratorSerialiser(data=request.data)
         serializer.is_valid(raise_exception=True)

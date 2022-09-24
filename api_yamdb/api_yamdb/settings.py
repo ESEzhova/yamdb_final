@@ -1,17 +1,22 @@
 import os
 from datetime import timedelta
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv(
     'SETTING_SECRET_KEY',
     default='pl385148kslhtyna1ilz4zqjrqagdol'
 )
 
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+
+# Application definition
 
 INSTALLED_APPS = [
     'reviews.apps.ReviewsConfig',
@@ -59,6 +64,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api_yamdb.wsgi.application'
 
 
+# Database
+
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
@@ -70,6 +77,7 @@ DATABASES = {
     }
 }
 
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -86,15 +94,21 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Internationalization
+
 LANGUAGE_CODE = 'en-us'
 
-# так как через slack пока связаться не могу, напишу здесь)
-# надеюсь правильно поняла замечания вместо TIME_ZONE = 'UTC'
-USE_TZ = True
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
+
+USE_TZ = True
+
+
+# Static files (CSS, JavaScript, Images)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 
 STATIC_URL = '/static/'

@@ -1,8 +1,6 @@
 import pandas as pd
-
 from django.core.management.base import BaseCommand
-
-from reviews.models import Title, Category
+from reviews.models import Category, Title
 
 
 class Command(BaseCommand):

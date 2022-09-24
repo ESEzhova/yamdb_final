@@ -1,5 +1,4 @@
 from django_filters import rest_framework as dfilters
-
 from reviews.models import Title
 
 
@@ -9,8 +8,7 @@ class MyFilter(dfilters.FilterSet):
     category = dfilters.CharFilter(method='get_category_slug')
 
     def get_category_slug(self, queryset, name, value):
-        queryset = queryset.filter(category__slug=value)
-        return queryset
+        return queryset.filter(category__slug=value)
 
     class Meta:
         model = Title
