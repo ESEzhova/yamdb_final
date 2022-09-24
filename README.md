@@ -1,4 +1,4 @@
-![workflow](https://github.com/AKafer/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![workflow](https://github.com/ESEzhova/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 # yamdb
 
@@ -97,22 +97,5 @@ http://<ip_сервера>/admin
 ### Работоспособность приложения можно проверить без развертывания на уже запущенном сервере:
 
 ```
-http://84.252.142.36/admin
+http://178.154.196.46/admin
 ```
-
-
-## Примеры
-
-### Когда вы запустите проект, по адресу http://<ip_сервера>/redoc/ будет доступна документация для API YaMDb. В документации описаны примеры работы API. Документация представлена в формате Redoc.
-
-## Стек технологий
-
-### Python 3, Django 2.2, Django REST framework, SQLite3, Simple-JWT, PostgreSQL, Nginx, Docker,
-
-## Авторы проекта
-
-### Сергей Сторожук ([https://github.com/AKafer](https://github.com/AKafer)) - часть управления пользователями (Auth и Users): система регистрации и аутентификации, права доступа, работа с токеном, система подтверждения через e-mail.
-
-### Илья Лукичев ([https://github.com/zerg959](https://github.com/zerg959)) - категории (Categories), жанры (Genres) и произведения (Titles): модели, представления и эндпойнты для них.
-
-### Екатерина Ежова ([https://github.com/ESEzhova](https://github.com/ESEzhova)) - отзывы (Review) и комментарии (Comments): модели, представления, эндпойнты, права доступа для запросов, рейтинги произведений.
