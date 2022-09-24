@@ -9,7 +9,7 @@ services:
     env_file:
       - ./.env
   web:
-    build: ../api_yamdb
+    build: esezhova/api_yamdb:v1.17.09.2022
     restart: always
     volumes:
       - static_value:/app/static/
