@@ -9,7 +9,6 @@ services:
     env_file:
       - ./.env
   web:
-    image: esezhova/yamdb:v1.17.09.2022
     build: ../api_yamdb
     restart: always
     volumes:
